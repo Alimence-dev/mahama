@@ -1,0 +1,474 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --color-bg: #f5f6f6;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef1f1;
+  --color-border: #dde2e2;
+  --color-text: #1f2a2e;
+  --color-text-muted: #5b6b6d;
+
+  --color-primary: #185c56;
+  --color-primary-hover: #124742;
+  --color-primary-contrast: #ffffff;
+
+  --color-danger: #9c3b3b;
+  --color-danger-hover: #7e2f2f;
+  --color-success: #2f7d4f;
+  --color-warning: #a67c1f;
+  --color-info: #2c5f8a;
+
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --radius: 6px;
+  --shadow-sm: 0 1px 2px rgba(20, 30, 30, 0.06);
+
+  font: 15px/1.5 var(--font-sans);
+  color-scheme: light dark;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14181a;
+    --color-surface: #1c2224;
+    --color-surface-alt: #232b2d;
+    --color-border: #343e40;
+    --color-text: #e7ecec;
+    --color-text-muted: #a3b0b1;
+
+    --color-primary: #4fb3a6;
+    --color-primary-hover: #6fc7bb;
+    --color-primary-contrast: #0d1413;
+
+    --color-danger: #e08585;
+    --color-danger-hover: #e9a3a3;
+    --color-success: #6fcf97;
+    --color-warning: #e0b356;
+    --color-info: #7fa9cc;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 28px 64px;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin: 4px 0 16px;
+}
+
+h2 {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--color-text-muted);
+  margin: 32px 0 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+h1 + p {
+  margin-top: -8px;
+  margin-bottom: 16px;
+  color: var(--color-text-muted);
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin: 0 0 8px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p.error {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+p.success {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+p.loading {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ---------- Page header (shared chrome) ---------- */
+.page-header {
+  margin: 0 -28px 8px;
+  padding: 18px 28px 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  color: var(--color-text);
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.page-header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.role-pill {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  margin: 14px 0 6px;
+}
+
+.page-header h1 {
+  margin: 0 0 12px;
+}
+
+.page-nav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.page-nav a {
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.page-nav a:hover {
+  background: var(--color-surface-alt);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+  background: var(--color-surface);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+thead th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  background: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+tbody tr:hover {
+  background: var(--color-surface-alt);
+}
+
+/* ---------- Forms ---------- */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px 16px;
+  margin-bottom: 18px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px 16px;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface-alt);
+}
+
+legend {
+  padding: 0 6px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+input,
+select {
+  font: inherit;
+  font-size: 13.5px;
+  padding: 7px 9px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* ---------- Buttons ---------- */
+button {
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+button.btn-secondary:hover {
+  background: var(--color-surface-alt);
+  border-color: var(--color-text-muted);
+}
+
+button.btn-danger {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+button.btn-danger:hover {
+  background: var(--color-danger);
+  color: var(--color-primary-contrast);
+  border-color: var(--color-danger-hover);
+}
+
+table button {
+  padding: 4px 10px;
+  font-size: 12.5px;
+  margin-right: 6px;
+}
+
+/* ---------- Landing page ---------- */
+.landing {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.landing .brand {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin: 0 0 6px;
+}
+
+.landing h1 {
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+.landing .tagline {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  margin: 0 0 24px;
+}
+
+.landing .cta {
+  display: inline-block;
+  padding: 10px 32px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.landing .cta:hover {
+  background: var(--color-primary-hover);
+  text-decoration: none;
+}
+
+.role-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 44px;
+  max-width: 900px;
+}
+
+.role-card {
+  width: 160px;
+  padding: 16px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.role-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: none;
+  margin: 0 0 6px;
+}
+
+.role-card p {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- Login page ---------- */
+.login-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 340px;
+  padding: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.login-card .brand {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin: 0 0 4px;
+}
+
+.login-card h1 {
+  font-size: 18px;
+  margin: 0 0 20px;
+}
+
+.login-card form {
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.login-card button {
+  width: 100%;
+  margin-top: 4px;
+}
